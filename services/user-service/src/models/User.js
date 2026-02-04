@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Define the User schema to manage PWID and Admin profile data
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -7,18 +8,15 @@ const UserSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["PWID", "CARETAKER"],
+    enum: ["PWID", "ADMIN"],
+    default: "PWID"
+  },
+  unitId: {
+    type: String,
     required: true
   },
-  // Added for Admin Dashboard grouping
-  unitId: {
-    type: String, 
-    required: true // e.g., "Unit-A", "Unit-B"
-  },
-  // Link to the peer PWID who verifies their tasks
   peerId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+    type: String // Stores ID of the housemate verification partner
   }
 }, { timestamps: true });
 

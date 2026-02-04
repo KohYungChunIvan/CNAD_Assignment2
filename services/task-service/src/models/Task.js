@@ -1,19 +1,20 @@
 import mongoose from "mongoose";
 import { TASK_STATUS } from "../utils/taskStatus.js";
 
+// Define the Task schema to manage routine-related data
 const TaskSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
   },
+  // Stores User ID from User Service as a String
   assignedTo: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: String, 
     required: true
   },
+  // Stores Peer ID from User Service as a String
   verifier: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
     required: true
   },
   frequency: {
